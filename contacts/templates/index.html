@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Flixlist</title>
+  </head>
+  <body>
+    <div>
+      <h1>Welcome!!</h1>
+      <p>
+        Manage your movies efficiently with the Flixlist web
+        application.
+      </p>
+      <p>This application allows you to:</p>
+      <ul>
+        <li>Add new Movies with details such as name and watch quantity.</li>
+        <li>View a list of all saved movies directly on the dashboard.</li>
+        <li>Search for specific movies using their name or watch quantity.</li>
+      </ul>
+      <p>Click below to get started:</p>
+      <a href="{% url 'add_contact' %}">Go to Movie Manager</a>
+    </div>
+  </body>
+</html>
