@@ -39,17 +39,17 @@ def add_contact(request):
 def search_contact(request):
     page_number = request.GET.get("page", 1)
     name = request.GET.get("name", "").strip()
-    phone = request.GET.get("phone", "").strip()
+    watches = request.GET.get("watches", "").strip()
 
     if request.method == "POST":
         name = request.POST.get("name", "").strip()
-        phone = request.POST.get("phone", "").strip()
+        watches = request.POST.get("watches", "").strip()
         # Reset to first page on new search
         page_number = 1
 
-    if name or phone:
+    if name or watches:
         contacts = Contact.objects.filter(
-            name__icontains=name, phone__icontains=phone
+            name__icontains=name, watches__icontains=watches
         ).order_by("id")  # Order by name to ensure consistency
     else:
         contacts = Contact.objects.all().order_by("id")  # Order the results
@@ -63,7 +63,7 @@ def search_contact(request):
         # "search_contact.html",
         {"contacts": page_obj,
          "name_query": name,
-         "phone_query": phone},
+         "watches_query": watches},
     )
 
 def edit_contact(request, contact_id, page_number):
@@ -74,10 +74,10 @@ def edit_contact(request, contact_id, page_number):
     if request.method == "POST":
         contact = Contact.objects.get(id=contact_id)
         name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        if contact.name != name or contact.phone != phone:
+        watches = request.POST.get("watches")
+        if contact.name != name or contact.watches != watches:
             contact.name = name
-            contact.phone = phone
+            contact.watches = watches
             contact.save()
             success = True
 

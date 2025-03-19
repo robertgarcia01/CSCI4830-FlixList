@@ -4,15 +4,15 @@ from .models import Contact
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ['id', 'name', 'phone']
+        fields = ['id', 'name', 'watches']
         # Apply CSS styles
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'form-control', 
-                'placeholder': 'Enter name',
+                'placeholder': 'Enter name of Movie',
             }),
-            'phone': forms.TextInput(attrs={
+            'watches': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter phone number',
+                'placeholder': 'Enter view count',
                 }),
         }

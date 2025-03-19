@@ -1,8 +1,8 @@
-{% extends 'base.html' %} {% block title %}Search Contact{% endblock %}
+{% extends 'base.html' %} {% block title %}Search Movie{% endblock %}
 <!-- -->
 {% block content %}
 <div>
-  <h1>Search Contact</h1>
+  <h1>Search Movie</h1>
   <form method="POST">
     {% csrf_token %}
     <div>
@@ -10,24 +10,24 @@
       <input type="text" id="name" name="name" value="{{ name_query }}" />
     </div>
     <div>
-      <label for="phone">Phone:</label>
-      <input type="text" id="phone" name="phone" value="{{ phone_query }}" />
+      <label for="watches">watches:</label>
+      <input type="text" id="watches" name="watches" value="{{ watches_query }}" />
     </div>
-    <button type="submit">Search Contact</button>
+    <button type="submit">Search Movie</button>
   </form>
 
   <!-- Search Results -->
   {% if contacts %}
   <div>
     <h2>Search Results</h2>
-    <p>Query: {{ name_query }} {{ phone_query }}</p>
+    <p>Query: {{ name_query }} {{ watches_query }}</p>
     <ul>
       {% for contact in contacts %}
       <li>
         <div>
           <span>#{{ contact.id }}</span>
           <span>{{ contact.name }}</span>
-          <span>{{ contact.phone }}</span>
+          <span>{{ contact.watches }}</span>
         </div>
       </li>
       {% endfor %}
@@ -38,13 +38,13 @@
       <ul>
         {% if contacts.has_previous %}
         <li>
-          <a href="?page=1&name={{ name_query }}&phone={{ phone_query }}"
+          <a href="?page=1&name={{ name_query }}&watches={{ watches_query }}"
             >First</a
           >
         </li>
         <li>
           <a
-            href="?page={{ contacts.previous_page_number }}& name={{ name_query }}& phone={{ phone_query }}"
+            href="?page={{ contacts.previous_page_number }}& name={{ name_query }}& watches={{ watches_query }}"
             >Previous</a
           >
         </li>
@@ -57,13 +57,13 @@
         {% if contacts.has_next %}
         <li>
           <a
-            href="?page={{ contacts.next_page_number }}&name={{ name_query }}&phone={{ phone_query }}"
+            href="?page={{ contacts.next_page_number }}&name={{ name_query }}&watches={{ watches_query }}"
             >Next</a
           >
         </li>
         <li>
           <a
-            href="?page={{ contacts.paginator.num_pages }}&name={{ name_query }}&phone={{ phone_query }}"
+            href="?page={{ contacts.paginator.num_pages }}&name={{ name_query }}&watches={{ watches_query }}"
             >Last</a
           >
         </li>
@@ -74,7 +74,7 @@
 
   {% elif request.method == "POST" and not contacts %}
   <!-- No Results Message -->
-  <div>No contacts found. Please try again.</div>
+  <div>No movies found. Please try again.</div>
   {% endif %}
 </div>
 {% endblock %}
